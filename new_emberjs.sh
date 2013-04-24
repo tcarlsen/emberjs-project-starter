@@ -11,6 +11,8 @@ do
     esac
 done
 
+included=""
+
 echo "Creating emberjs project named $appName"
 mkdir $appName
 
@@ -40,6 +42,8 @@ if [ -n "$Boostrap" ]; then
     sed 's|<script src="js/app.js"></script>|<script src="js/libs/bootstrap.min.js"></script>\
   <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
     rm $appName/tmp.html
+    
+    included+="'Twitter Boostrap',"
 fi
 
 if [ -n "$emberData" ]; then
@@ -49,6 +53,8 @@ if [ -n "$emberData" ]; then
     sed 's|<script src="js/app.js"></script>|<script src="js/libs/ember-data-latest.min.js"></script>\
   <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
     rm $appName/tmp.html
+    
+    included+="'Ember Data',"
 fi
 
 if [ -n "$localStorage" ]; then
@@ -57,6 +63,19 @@ if [ -n "$localStorage" ]; then
     mv $appName/index.html $appName/tmp.html
     sed 's|<script src="js/app.js"></script>|<script src="js/libs/localstorage_adapter.js"></script>\
   <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
+    rm $appName/tmp.html
+    
+    included+="'Ember Data Local Storage Adapter',"
+fi
+
+if [ -n "$included" ]; then
+    mv $appName/js/app.js $appName/tmp.js
+    sed "s|'red', 'yellow', 'blue'|$included|g" $appName/tmp.js > $appName/js/app.js
+    rm $appName/tmp.js
+    
+    mv $appName/index.html $appName/tmp.html
+    sed 's|<ul>|<strong>This starter kit also includes:</strong>\
+  <ul>|g' $appName/tmp.html > $appName/index.html
     rm $appName/tmp.html
 fi
 
