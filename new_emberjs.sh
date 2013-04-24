@@ -11,6 +11,12 @@ do
     esac
 done
 
+if [ -d "$appName" ]; then
+    echo "There already exists an directory with that name, please delete or choose another project name"
+    echo "Script terminated!"
+    exit
+fi
+
 included=""
 
 echo "Creating emberjs project named $appName"
