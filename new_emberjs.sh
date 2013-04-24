@@ -1,12 +1,13 @@
 #!/bin/bash
 
-while getopts n:bd option
+while getopts n:bdl option
 do
     case "${option}"
     in
         n) appName=$OPTARG;;
         b) Boostrap=true;;
         d) emberData=true;;
+        l) localStorage=true;;
     esac
 done
 
@@ -46,6 +47,15 @@ if [ -n "$emberData" ]; then
     curl -L -s -k --progress-bar https://github.com/downloads/emberjs/data/ember-data-latest.min.js -o $appName/js/libs/ember-data-latest.min.js
     mv $appName/index.html $appName/tmp.html
     sed 's|<script src="js/app.js"></script>|<script src="js/libs/ember-data-latest.min.js"></script>\
+  <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
+    rm $appName/tmp.html
+fi
+
+if [ -n "$localStorage" ]; then
+    echo "Downloading Ember Data Local Storage Adapter"
+    curl -L -s -k --progress-bar https://raw.github.com/rpflorence/ember-localstorage-adapter/master/localstorage_adapter.js -o $appName/js/libs/localstorage_adapter.js
+    mv $appName/index.html $appName/tmp.html
+    sed 's|<script src="js/app.js"></script>|<script src="js/libs/localstorage_adapter.js"></script>\
   <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
     rm $appName/tmp.html
 fi
