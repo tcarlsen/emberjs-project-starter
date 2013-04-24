@@ -28,36 +28,36 @@
         </ul>
       </header>
       <section>
-        <h1>Emberjs project starter</h1>
+        <h2>Ember.js project starter</h2>
 
-<p>This is a little bash script to help kickstart a new Emberjs project based on the emberjs <a href="https://github.com/emberjs/starter-kit/">starter-kit</a>.</p>
+<p>This is a little bash script to help kickstart a new Ember.js project.
+It is based on the Ember.js <a href="https://github.com/emberjs/starter-kit/">starter-kit</a>.</p>
 
-<h2>Usage</h2>
+<h1>Usage</h1>
 
-<p>Go download <a href="https://raw.github.com/tcarlsen/emberjs-project-starter/master/new_emberjs.sh">new_emberjs.sh</a> to a location of your choice and then run:</p>
+<p>Download <a href="https://raw.github.com/tcarlsen/emberjs-project-starter/master/new_emberjs.sh">new_emberjs.sh</a> and give it the
+right permissions like:</p>
 
-<pre><code>chmod -x /path/to/emberjs.sh
-</code></pre>
+<div class="highlight"><pre><span class="nv">$ </span>chmod -x /path/to/new_emberjs.sh
+</pre></div>
 
-<p>Now you are ready to use the script by running this:</p>
+<p>Now you are ready to use the script by running:</p>
 
-<pre><code>sh /path/to/emberjs.sh -n project_name
-</code></pre>
+<div class="highlight"><pre><span class="nv">$ </span>/path/to/new_memberjs.sh -n project_name
+</pre></div>
 
-<p>This will create a new folder with all you need to kickstart your Emberjs project.</p>
+<p>This will create a new folder with everything you need to kickstart your Ember.js project.</p>
 
-<p>If you like the project to use <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a> front-end framework you just need to add a <code>-b</code> like this:</p>
+<p>It is possible to use <a href="http://twitter.github.io/bootstrap">Twitter Bootstrap</a> and other plugins by using one
+of the flags when runing <code>new_emberjs.sh</code>.</p>
 
-<pre><code>sh /path/to/emberjs.sh -n project_name -b
-</code></pre>
+<h1>Flags</h1>
 
-<h2>Flags</h2>
-
-<pre><code>-n &lt;name&gt;           #defining project name
--b                  #include Twitter Boostrap
--d                  #include Ember Data
--l                  #include Ember Data Local Storage Adapter
--h                  #shows all flags available 
+<pre><code>-n &lt;name&gt;           # Project name
+-b                  # Include Twitter Boostrap
+-d                  # Include Ember Data
+-l                  # Include Ember Data Local Storage Adapter
+-h                  # Usage information
 </code></pre>
       </section>
       <footer>
