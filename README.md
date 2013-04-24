@@ -22,5 +22,6 @@ If you like the project to use [Twitter Bootstrap](http://twitter.github.io/boot
 
 	-n <name>			#defining project name
 	-b					#include Twitter Boostrap
-	-d					#include emberjs data
+	-d					#include Ember Data
 	-l					#include Ember Data Local Storage Adapter
+	-h					#shows all flags available 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts n:bdl option
+while getopts n:bdlh option
 do
     case "${option}"
     in
@@ -8,8 +8,19 @@ do
         b) Boostrap=true;;
         d) emberData=true;;
         l) localStorage=true;;
+        h) Help=true;;
     esac
 done
+
+if [ -n "$Help" ]; then
+    echo "Flags available:"
+    echo "  -n <name>    #defining project name"
+    echo "  -b           #include Twitter Boostrap"
+    echo "  -d           #include Ember Data"
+    echo "  -l           #include Ember Data Local Storage Adapter"
+    echo "  -h           #shows this message"
+    exit
+fi
 
 if [ -d "$appName" ]; then
     echo "There already exists an directory with that name, please delete or choose another project name"
