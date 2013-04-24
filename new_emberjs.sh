@@ -1,6 +1,13 @@
 #!/bin/bash
 
-appName=$1
+while getopts n:b option
+do
+    case "${option}"
+    in
+        n) appName=$OPTARG;;
+        b) Boostrap=true;;
+    esac
+done
 
 echo "Creating emberjs project named $appName"
 mkdir $appName
@@ -10,5 +17,27 @@ curl -L -s -k --progress-bar https://github.com/emberjs/starter-kit/archive/mast
 unzip starter-kit.zip
 mv starter-kit-master/* $appName/
 rm -rf starter-kit*
+
+if [ -n "$Boostrap" ]; then
+    echo "Downloading Twitter Bootstrap"
+    curl -L -s -k --progress-bar http://twitter.github.io/bootstrap/assets/bootstrap.zip -o bootstrap.zip
+    unzip bootstrap.zip
+    rm $appName/css/*.css
+    mv bootstrap/css/*.min.css $appName/css/
+    touch $appName/css/style.css
+    mv bootstrap/js/bootstrap.min.js $appName/js/libs/
+    mkdir $appName/img/
+    mv bootstrap/img/* $appName/img/
+    rm -rf bootstrap*
+    
+    echo "Updating the index file to use Twitter Bootstrap"
+    mv $appName/index.html $appName/tmp.html
+    sed 's|/normalize.css">|/bootstrap.min.css">\
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css">|g' $appName/tmp.html > $appName/index.html
+    mv $appName/index.html $appName/tmp.html
+    sed 's|<script src="js/app.js"></script>|<script src="js/libs/bootstrap.min.js"></script>\
+  <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
+    rm $appName/tmp.html
+fi
 
 echo "Project has successfully been created"
