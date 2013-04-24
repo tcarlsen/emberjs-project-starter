@@ -1,27 +1,37 @@
-#Emberjs project starter
+Ember.js project starter
+------------------------
 
-This is a little bash script to help kickstart a new Emberjs project based on the emberjs [starter-kit](https://github.com/emberjs/starter-kit/).
+This is a little bash script to help kickstart a new Ember.js project.
+It is based on the Ember.js [starter-kit](https://github.com/emberjs/starter-kit/).
 
-## Usage
+Usage
+=====
 
-Go download [new_emberjs.sh](https://raw.github.com/tcarlsen/emberjs-project-starter/master/new_emberjs.sh) to a location of your choice and then run:
-	
-	chmod -x /path/to/emberjs.sh
-	
-Now you are ready to use the script by running this:
+Download [new_emberjs.sh](https://raw.github.com/tcarlsen/emberjs-project-starter/master/new_emberjs.sh) and give it the
+right permissions like:
 
-	sh /path/to/emberjs.sh -n project_name
-	
-This will create a new folder with all you need to kickstart your Emberjs project.
+``` bash
+$ chmod -x /path/to/new_emberjs.sh
+```
 
-If you like the project to use [Twitter Bootstrap](http://twitter.github.io/bootstrap/) front-end framework you just need to add a `-b` like this:
+Now you are ready to use the script by running:
 
-	sh /path/to/emberjs.sh -n project_name -b
-	
-##Flags
+``` bash
+$ /path/to/new_memberjs.sh -n project_name
+```
 
-	-n <name>			#defining project name
-	-b					#include Twitter Boostrap
-	-d					#include Ember Data
-	-l					#include Ember Data Local Storage Adapter
-	-h					#shows all flags available 
+This will create a new folder with everything you need to kickstart your Ember.js project.
+
+It is possible to use [Twitter Bootstrap](http://twitter.github.io/bootstrap) and other plugins by using one
+of the flags when runing `new_emberjs.sh`.
+
+Flags
+=====
+
+```
+-n <name>           # Project name
+-b                  # Include Twitter Boostrap
+-d                  # Include Ember Data
+-l                  # Include Ember Data Local Storage Adapter
+-h                  # Usage information
+```
