@@ -1,11 +1,12 @@
 #!/bin/bash
 
-while getopts n:b option
+while getopts n:bd option
 do
     case "${option}"
     in
         n) appName=$OPTARG;;
         b) Boostrap=true;;
+        d) emberData=true;;
     esac
 done
 
@@ -36,6 +37,15 @@ if [ -n "$Boostrap" ]; then
   <link rel="stylesheet" href="css/bootstrap-responsive.min.css">|g' $appName/tmp.html > $appName/index.html
     mv $appName/index.html $appName/tmp.html
     sed 's|<script src="js/app.js"></script>|<script src="js/libs/bootstrap.min.js"></script>\
+  <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
+    rm $appName/tmp.html
+fi
+
+if [ -n "$emberData" ]; then
+    echo "Downloading emberjs data"
+    curl -L -s -k --progress-bar https://github.com/downloads/emberjs/data/ember-data-latest.min.js -o $appName/js/libs/ember-data-latest.min.js
+    mv $appName/index.html $appName/tmp.html
+    sed 's|<script src="js/app.js"></script>|<script src="js/libs/ember-data-latest.min.js"></script>\
   <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
     rm $appName/tmp.html
 fi
