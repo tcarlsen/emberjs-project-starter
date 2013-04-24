@@ -90,4 +90,9 @@ if [ -n "$included" ]; then
     rm $appName/tmp.html
 fi
 
+mv $appName/index.html $appName/tmp.html
+sed 's|{{outlet}}|{{outlet}}\
+    <p>Thanks for using Emberjs project starter by TCarlsen!</p>|g' $appName/tmp.html > $appName/index.html
+rm $appName/tmp.html
+
 echo "Project has successfully been created"
