@@ -38,9 +38,20 @@ if [ -n "$Boostrap" ]; then
     mv $appName/index.html $appName/tmp.html
     sed 's|/normalize.css">|/bootstrap.min.css">\
   <link rel="stylesheet" href="css/bootstrap-responsive.min.css">|g' $appName/tmp.html > $appName/index.html
+    
     mv $appName/index.html $appName/tmp.html
     sed 's|<script src="js/app.js"></script>|<script src="js/libs/bootstrap.min.js"></script>\
   <script src="js/app.js"></script>|g' $appName/tmp.html > $appName/index.html
+    rm $appName/tmp.html
+    
+    mv $appName/index.html $appName/tmp.html
+    sed 's|<script type="text/x-handlebars">|<script type="text/x-handlebars">\
+    <div class="container">|g' $appName/tmp.html > $appName/index.html
+    rm $appName/tmp.html
+    
+    mv $appName/index.html $appName/tmp.html
+    sed 's|{{outlet}}|{{outlet}}\
+    </div>|g' $appName/tmp.html > $appName/index.html
     rm $appName/tmp.html
     
     included+="'Twitter Boostrap',"
